@@ -1,5 +1,10 @@
 # Getting Started
 
+### Design the reports
+To design the reports, use the [Jaspersoft Studio](https://community.jaspersoft.com/project/jaspersoft-studio). There's a community version available for free.
+
+There's a sample report in the *samples* folder.
+
 ### Build
 ```
 ./mvnw clean \
