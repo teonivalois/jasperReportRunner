@@ -3,8 +3,11 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0fc458b0-fd0e-45e5-9005-a7301f1b8812">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="MyParameter" class="java.lang.String">
+		<defaultValueExpression><![CDATA["Default"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[select * from nettur_empresa]]>
+		<![CDATA[select * from nettur_empresa where nome_fantasia ilike concat('%', $P{MyParameter} , '%')]]>
 	</queryString>
 	<field name="codigo" class="java.lang.Long">
 		<property name="com.jaspersoft.studio.field.label" value="codigo"/>
@@ -109,6 +112,10 @@
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ae31fbaf-ba53-4008-8cdb-ebe3e6ce0924"/>
 				</reportElement>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="47" width="100" height="30" uuid="a9ae36bf-f727-4db3-ab5a-5b098b78bded"/>
+				<textFieldExpression><![CDATA[$P{MyParameter}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

@@ -12,12 +12,15 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 @Service
 public class ReportRunnerService {
-	 
+
 	@Autowired
-	 private ReportRunnerDAO reportRunnerDAO;
-	 
-	 public JasperPrint run(String reportPath, Map<String, Object> parameters) throws Exception {
-		 Path path = Paths.get("/opt/jasper/reports", reportPath);
-		 return reportRunnerDAO.render(path.toString(), parameters);
-	 }
+	private ReportRunnerDAO reportRunnerDAO;
+
+	public JasperPrint run(String reportPath, Map<String, Object> parameters, Object jsonDataSource) throws Exception {
+		Path path = Paths.get("/opt/jasper/reports", reportPath);
+		if (jsonDataSource == null)
+			return reportRunnerDAO.render(path.toString(), parameters);
+		else
+			return reportRunnerDAO.render(path.toString(), parameters, jsonDataSource);
+	}
 }
