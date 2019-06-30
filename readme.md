@@ -11,7 +11,7 @@ There's a sample report in the *samples* folder.
 	&& ./mvnw package \
 	&& docker build . \
 		--build-arg JAR_FILE=./target/reportRunner-1.0.0.jar \
-		-t teonivalois/report-runner:1.0.0 \
+		-t teonivalois/jasper-report-runner:1.0.0 \
 	&& ./mvnw clean
 ```
 
@@ -25,7 +25,7 @@ docker run --rm \
 	-e DATABASE_PASSWORD= \
 	-v $(pwd)/samples:/opt/jasper/reports \
 	--name report-runner \
-	teonivalois/report-runner:1.0.0
+	teonivalois/jasper-report-runner:1.0.0
 ```
 	
 ### Check
