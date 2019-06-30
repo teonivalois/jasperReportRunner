@@ -7,12 +7,7 @@ There's a sample report in the *samples* folder.
 
 ### Build
 ```
-./mvnw clean \
-	&& ./mvnw package \
-	&& docker build . \
-		--build-arg JAR_FILE=./target/reportRunner-1.0.0.jar \
-		-t teonivalois/jasper-report-runner:1.0.0 \
-	&& ./mvnw clean
+docker build . -t teonivalois/jasper-report-runner:1.0.0
 ```
 
 ### Run
