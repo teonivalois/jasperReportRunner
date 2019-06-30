@@ -7,4 +7,5 @@ RUN ./mvnw clean \
 FROM openjdk:13-oracle
 VOLUME /tmp
 COPY --from=builder /src/target/reportRunner.jar app.jar
+EXPOSE 8080
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
