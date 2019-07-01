@@ -29,9 +29,14 @@ public class ReportRunnerDAO {
 	public JasperPrint render(String reportPath, Map<String, Object> parameters) throws Exception {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 
-		JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
-		JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
-
+		JasperPrint print = null;
+		if (reportPath.endsWith(".jrxml")) {
+			JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
+			print = JasperFillManager.fillReport(jasperReport, parameters, conn);
+		} else {
+			print = JasperFillManager.fillReport(reportPath, parameters, conn);
+		}
+		
 		conn.close();
 
 		return print;
@@ -40,12 +45,16 @@ public class ReportRunnerDAO {
 	public JasperPrint render(String reportPath, Map<String, Object> parameters, Object datasource) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(datasource);
-		
+
 		JsonDataSource jsonDataSource = new JsonDataSource(new ByteArrayInputStream(json.getBytes()));
 		
-		JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
-		JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, jsonDataSource);
-
+		JasperPrint print = null;
+		if (reportPath.endsWith(".jrxml")) {
+			JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
+			print = JasperFillManager.fillReport(jasperReport, parameters, jsonDataSource);
+		} else {
+			print = JasperFillManager.fillReport(reportPath, parameters, jsonDataSource);
+		}
 		return print;
 	}
 }
