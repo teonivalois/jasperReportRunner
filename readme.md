@@ -7,7 +7,7 @@ There's a sample report in the *samples* folder.
 
 ### Build
 ```
-docker build . -t teonivalois/jasper-report-runner:1.0.0
+docker build . -t teonivalois/jasper-report-runner:latest
 ```
 
 ### Run
