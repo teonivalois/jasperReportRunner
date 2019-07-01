@@ -20,7 +20,7 @@ docker run --rm \
 	-e DATABASE_PASSWORD= \
 	-v $(pwd)/samples:/opt/jasper/reports \
 	--name report-runner \
-	teonivalois/jasper-report-runner:1.0.0
+	teonivalois/jasper-report-runner:latest
 ```
 	
 ### Check
