@@ -47,6 +47,8 @@ public class ReportRunnerDAO {
 		String json = mapper.writeValueAsString(datasource);
 
 		JsonDataSource jsonDataSource = new JsonDataSource(new ByteArrayInputStream(json.getBytes()));
+		jsonDataSource.setDatePattern(parameters.getOrDefault("DatePattern", "yyyy-MM-dd'T'HH:mm:ss").toString());
+		jsonDataSource.setLocale(parameters.getOrDefault("Locale", "en-US").toString());
 		
 		JasperPrint print = null;
 		if (reportPath.endsWith(".jrxml")) {
