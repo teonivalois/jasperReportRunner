@@ -2,6 +2,7 @@ package cloud.valois.java.reportRunner.dao;
 
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class ReportRunnerDAO {
 	public JasperPrint render(String reportPath, Map<String, Object> parameters) throws Exception {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 
+		Locale locale = Locale.forLanguageTag(parameters.getOrDefault("locale", "en-US").toString());
+		parameters.put("REPORT_LOCALE", locale);
+
 		JasperPrint print = null;
 		if (reportPath.endsWith(".jrxml")) {
 			JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
@@ -46,10 +50,13 @@ public class ReportRunnerDAO {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(datasource);
 
-		JsonDataSource jsonDataSource = new JsonDataSource(new ByteArrayInputStream(json.getBytes()));
-		jsonDataSource.setDatePattern(parameters.getOrDefault("DatePattern", "yyyy-MM-dd'T'HH:mm:ss").toString());
-		jsonDataSource.setLocale(parameters.getOrDefault("Locale", "en-US").toString());
+		Locale locale = Locale.forLanguageTag(parameters.getOrDefault("locale", "en-US").toString());
+		parameters.put("REPORT_LOCALE", locale);
 		
+		JsonDataSource jsonDataSource = new JsonDataSource(new ByteArrayInputStream(json.getBytes()));
+		jsonDataSource.setDatePattern(parameters.getOrDefault("datePattern", "yyyy-MM-dd'T'HH:mm:ss").toString());
+		jsonDataSource.setLocale(locale);
+
 		JasperPrint print = null;
 		if (reportPath.endsWith(".jrxml")) {
 			JasperReport jasperReport = JasperCompileManager.compileReport(reportPath);
