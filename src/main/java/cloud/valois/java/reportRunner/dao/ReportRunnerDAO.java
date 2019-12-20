@@ -30,7 +30,7 @@ public class ReportRunnerDAO {
 	public JasperPrint render(String reportPath, Map<String, Object> parameters) throws Exception {
 		Connection conn = jdbcTemplate.getDataSource().getConnection();
 
-		Locale locale = Locale.forLanguageTag(parameters.getOrDefault("locale", "en-US").toString());
+		Locale locale = Locale.forLanguageTag(parameters.getOrDefault("reportLocale", "en-US").toString());
 		parameters.put("REPORT_LOCALE", locale);
 
 		JasperPrint print = null;
@@ -50,12 +50,12 @@ public class ReportRunnerDAO {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(datasource);
 
-		Locale locale = Locale.forLanguageTag(parameters.getOrDefault("locale", "en-US").toString());
-		parameters.put("REPORT_LOCALE", locale);
+		parameters.put("REPORT_LOCALE", Locale.forLanguageTag(parameters.getOrDefault("reportLocale", "en-US").toString()));
+		parameters.put("JSON_LOCALE", Locale.forLanguageTag(parameters.getOrDefault("jsonLocale", "en-US").toString()));
 		
 		JsonDataSource jsonDataSource = new JsonDataSource(new ByteArrayInputStream(json.getBytes()));
 		jsonDataSource.setDatePattern(parameters.getOrDefault("datePattern", "yyyy-MM-dd'T'HH:mm:ss").toString());
-		jsonDataSource.setLocale(locale);
+		jsonDataSource.setNumberPattern(parameters.getOrDefault("numberPattern", "#,##0.00#").toString());
 
 		JasperPrint print = null;
 		if (reportPath.endsWith(".jrxml")) {
