@@ -59,12 +59,12 @@
 		<dependency>
 		 <groupId>net.sf.jasperreports</groupId>
 		 <artifactId>jasperreports</artifactId>
-		 <version>6.10.0</version>
+		 <version>6.11.0</version>
 		</dependency>
 		<dependency>
 		 <groupId>net.sf.jasperreports</groupId>
 		 <artifactId>jasperreports-fonts</artifactId>
-		 <version>6.10.0</version>
+		 <version>6.11.0</version>
 		</dependency>
 		<dependency>
 		  <groupId>joda-time</groupId>
