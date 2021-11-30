@@ -18,9 +18,6 @@ public class ReportRunnerService {
 
 	public JasperPrint run(String reportPath, Map<String, Object> parameters, Object jsonDataSource) throws Exception {
 		Path path = Paths.get("/opt/jasper/reports", reportPath);
-		if (jsonDataSource == null)
-			return reportRunnerDAO.render(path.toString(), parameters);
-		else
-			return reportRunnerDAO.render(path.toString(), parameters, jsonDataSource);
+		return reportRunnerDAO.render(path.toString(), parameters, jsonDataSource);
 	}
 }

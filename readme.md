@@ -14,10 +14,6 @@ docker build . -t teonivalois/jasper-report-runner:latest
 ```
 docker run --rm \
 	-p 8080:8080 \
-	-e DATABASE_JDBC_URL=jdbc:postgresql://host.docker.internal:5432/plan4trip \
-	-e DATABASE_DRIVER_CLASSNAME=org.postgresql.Driver \
-	-e DATABASE_USERNAME=teoni \
-	-e DATABASE_PASSWORD= \
 	-v $(pwd)/samples:/opt/jasper/reports \
 	--name report-runner \
 	teonivalois/jasper-report-runner:latest
@@ -25,5 +21,5 @@ docker run --rm \
 	
 ### Check
 ```
-http://localhost:8080/?reportPath=Blank_A4.jrxml
+	http://localhost:8080/?reportPath=Blank_A4.jrxml
 ```
