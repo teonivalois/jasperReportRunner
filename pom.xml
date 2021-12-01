@@ -50,7 +50,7 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>6.11.0</version>
+			<version>6.18.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.lowagie</groupId>
@@ -61,12 +61,12 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-fonts</artifactId>
-			<version>6.11.0</version>
+			<version>6.18.1</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports-functions</artifactId>
-			<version>6.11.0</version>
+			<version>6.18.1</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.lowagie</groupId>
